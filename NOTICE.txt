@@ -1,0 +1,4 @@
+Licenses used by Security Headers
+
+The software used in this project is licensed as Apache 2.0 license.
+See http://www.apache.org/licenses/LICENSE-2.0 for license terms.

@@ -1,0 +1,23 @@
+plugins {
+    id 'com.enonic.xp.app' version '1.0.17'
+}
+
+app {
+    name = project.ext.appName
+    displayName = project.ext.displayName
+    vendorName = project.ext.vendorName
+    vendorUrl = project.ext.vendorUrl
+    systemVersion = "${xpVersion}"
+}
+
+dependencies {
+    compile "com.enonic.xp:core-api:${xpVersion}"
+    compile "com.enonic.xp:portal-api:${xpVersion}"
+    include "com.enonic.xp:lib-portal:${xpVersion}"
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    xp.enonicRepo()
+}
