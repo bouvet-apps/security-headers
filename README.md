@@ -2,7 +2,7 @@
 Easy to set up and use security headers for Enonic XP.
 
 ## How to use
-The application is available through [Enonic Market](https://market.enonic.com/vendors/bouvet/no.bouvet.exp.securityheaders).
+The application is available through [Enonic Market](https://market.enonic.com/vendors/bouvet/no.bouvet.app.securityheaders).
 TODO: Make sure link is ok once submitted to market.
 
 ### Install application
@@ -29,6 +29,8 @@ configuration files may require a bit more technical expertise than site configu
 
 You can omit any of the header name-value pairs if you don't want the header in question added to your
 site.
+
+All applications sharing the same $XP_HOME will use the same configuration file.
 
 Example configuration file:
 ```
