@@ -15,7 +15,6 @@ exports.responseFilter = function (req, res) {
         if (app.config.header_x_content_type_options)       headers["X-Content-Type-Options"]       = app.config.header_x_content_type_options;
         if (app.config.header_referrer_policy)              headers["Referrer-Policy"]              = app.config.header_referrer_policy;
     } else {
-
         if (siteConfig.strictTransportSecurity) {
             var h = "max-age=" + siteConfig.strictTransportSecurity.maxAge;
 
