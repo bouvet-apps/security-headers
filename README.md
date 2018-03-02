@@ -2,8 +2,7 @@
 Easy to set up and use security headers for Enonic XP.
 
 ## How to use
-The application is available through [Enonic Market](https://market.enonic.com/vendors/bouvet/no.bouvet.app.securityheaders).
-TODO: Make sure link is ok once submitted to market.
+The application is available through [Enonic Market](https://market.enonic.com/vendors/bouvet/security-headers).
 
 ### Install application
 Open the Applications section of your Enonic XP installation. Click 'Install', 
