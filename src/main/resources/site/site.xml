@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-  <filters>
-      <response-filter name="security-headers" order="10"/>
-  </filters>
-  <config>
+  <!--mappings>
+    <mapping filter="/site/filters/security-headers.js" order="10"> 
+      <pattern>/.*</pattern>
+    </mapping>
+  </mappings-->
+  <processors>
+    <response-processor name="security-headers" order="10"/>  
+  </processors>
+  <form>
       <input name="useConfigFile" type="CheckBox">
           <label>Use config file instead of site config.</label>
           <help-text>Use configuration from file in $XP_HOME/config/no.bouvet.app.security-headers.cfg instead of the parameters specified in site config.</help-text>
@@ -127,5 +132,5 @@
               </input>
           </items>
       </item-set>
-  </config>
+  </form>
 </site>
