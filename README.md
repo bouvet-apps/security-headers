@@ -83,9 +83,17 @@ The Referrer-Policy HTTP header governs which referrer information, sent in the 
 ### Links
 [Test your site at securityheaders.io](https://securityheaders.io/)
 
+## Compatibility
+| App version | XP version |
+|-------------|------------|
+| 3.x.x       | 7.9.x      |
+| 2.x.x       | 7.x.x      |
 
-
-
+## Changelog
+### 3.0.0
+Updated so the CSP from this app overwrites the default CSP from Enonic, which was implemented from Enonic XP 7.9.0 (https://developer.enonic.com/docs/xp/stable/release#xp7_update_9).
+Enonic added CSP to preview, but this app did not add Security Headers to edit or preview mode, so it was changed to add it to preview mode as well so the site won't behave 
+differently from preview to live if you use this app.
 
 
 

@@ -2,7 +2,7 @@ var portalLib = require('/lib/xp/portal');
 
 exports.responseFilter = function (req, res) {
     // Do not apply security headers when in live edit.
-    if (req.mode == 'edit' || req.mode == 'preview') return res;
+    if (req.mode == 'edit') return res;
 
     var headers = res.headers;
     var siteConfig = portalLib.getSiteConfig();
