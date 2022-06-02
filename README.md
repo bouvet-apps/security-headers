@@ -97,7 +97,26 @@ The Referrer-Policy HTTP header governs which referrer information, sent in the 
 
 ## Changelog
 ### 3.0.0
-Updated so the CSP from this app overwrites the default CSP from Enonic, which was implemented from Enonic XP 7.9.0 (https://developer.enonic.com/docs/xp/stable/release#xp7_update_9).
-Enonic added CSP to preview, but this app did not add Security Headers to edit or preview mode, so it was changed to add it to preview mode as well so the site won't behave 
-differently from preview to live if you use this app.
 
+Breaking change: CSP field is updated. See details of how to update from older versions below.
+
+After Enonic added CSP to the preview mode with Enonic XP 7.9.0 (https://developer.enonic.com/docs/xp/stable/release#xp7_update_9),
+we needed to update this app to also add the CSP to preview mode, so the user won't be confused by possible different CSPs. Therefore this app will
+now add Security Headers to any mode except edit mode.
+
+The CSP input in this app has also been updated to make it easier to maintain.
+
+#### Updating to 3.0.0 from older versions:
+- If you are only using the config file: this update should not affect you. But, we found the documentation gave the wrong filename for the config file, 
+  so you might check that your config is saved in '$XP_HOME/config/no.bouvet.app.securityheaders.cfg' to make sure it is in use.
+- If you are using the "Content-Security-Policy" field, you should: 
+  1. Copy your CSP to a safe place. If you have already updated and did not save your CSP somewhere else,
+    you will still be able to find your old CSP by using for example "Content Viewer", and finding the old config below `data.config.contentSecurityPolicy.policy`.
+    
+     ***NOTE:*** this policy will not be used even if you can still find it in your content. 
+  2. Update the app by opening the Applications section of your Enonic XP installation. Click 'Install', and locate the 'Security Headers' app
+    in the 'Enonic Market' tab. Now click the 'Update' button.
+  3. Navigate to Content Studio and edit the Site Configuration of the "Security Headers" app, and add your CSP by
+    checking the "Common Directives" you want to use and edit their values as you need. If you can't find one of the directives you want to use here, 
+    you can add them by adding one or more "Extra directives".
+- If you are using anything else than what is mentioned above, your settings will not change by this update. The only change will be that the settings are also added to preview mode.
