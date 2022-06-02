@@ -37,14 +37,128 @@
 
       <item-set name="contentSecurityPolicy">
           <label>Content-Security-Policy</label>
-          <help-text>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.</help-text>
+          <help-text>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. Read more about CSP at https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP .</help-text>
           <occurrences minimum="0" maximum="1"/>
           <items>
-              <input name="policy" type="TextLine">
-                  <label>Content-Security-Policy</label>
-                  <help-text>Read more about CSP at https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP</help-text>
-                  <default>default-src 'self'</default>
-              </input>
+              <option-set name="commonDirectives">
+                  <label>Common Directives</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <options minimum="0" maximum="0">
+                      <option name="default-src">
+                          <label>default-src</label>
+                          <default>true</default>
+                          <help-text>Serves as a fallback for the other fetch directives. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src</help-text>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self'</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="base-uri">
+                          <label>base-uri</label>
+                          <default>true</default>
+                          <help-text>Restricts the URLs which can be used in a document's "base" element. Not setting this allows any URL (no fallback).</help-text>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self'</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="form-action">
+                          <label>form-action</label>
+                          <default>true</default>
+                          <help-text>Restricts the URLs which can be used as the target of a form submissions from a given context. Not setting this allows anything (no fallback). Warning: Whether form-action should block redirects after a form submission is debated and browser implementations of this aspect are inconsistent. See more at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/form-action</help-text>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self'</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="object-src">
+                          <label>object-src</label>
+                          <default>true</default>
+                          <help-text>Specifies valid sources for the "object", "embed", and "applet" elements. Defaults back to default-src, but it is recommended to restrict this fetch-directive (e.g. explicitly set object-src 'none' if possible) as elements controlled by object-src are perhaps coincidentally considered legacy HTML elements and aren't receiving new standardized features (such as the security attributes sandbox or allow for "iframe"). See more at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/object-src</help-text>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'none'</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="script-src">
+                          <label>script-src</label>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self'</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="font-src">
+                          <label>font-src</label>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self' data:</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="frame-src">
+                          <label>frame-src</label>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self'</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="img-src">
+                          <label>img-src</label>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self' data:</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="media-src">
+                          <label>media-src</label>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self' data:</default>
+                              </input>
+                          </items>
+                      </option>
+                      <option name="style-src">
+                          <label>style-src</label>
+                          <items>
+                              <input name="directiveValues" type="TextArea">
+                                  <label>Directive values</label>
+                                  <default>'self'</default>
+                              </input>
+                          </items>
+                      </option>
+                  </options>
+              </option-set>
+
+              <item-set name="extraDirectives">
+                  <label>Extra directives</label>
+                  <occurrences minimum="0" maximum="0"/>
+                  <items>
+                      <input name="directiveName" type="TextLine">
+                          <label>Directive Name</label>
+                          <occurrences minimum="0" maximum="1"/>
+                      </input>
+                      <input name="directiveValues" type="TextArea">
+                          <label>Directive Values</label>
+                          <occurrences minimum="0" maximum="1"/>
+                      </input>
+                  </items>
+              </item-set>
           </items>
       </item-set>
 

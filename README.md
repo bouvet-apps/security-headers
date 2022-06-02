@@ -5,9 +5,15 @@ Easy to set up and use security headers for Enonic XP.
 The application is available through [Enonic Market](https://market.enonic.com/vendors/bouvet/security-headers).
 
 ### Install application
+#### Enonic Market
 Open the Applications section of your Enonic XP installation. Click 'Install', 
 and locate the 'Security Headers' app in the 'Enonic Market' tab. Now click the 'Install'
 button.
+
+#### Build yourself
+Build this app with gradle. In the terminal, from the root of the project, enter `./gradlew build`. On Windows, just enter `gradlew build`
+in the command line from the project root. Next, move the JAR file from build/libs to your `$XP_HOME/deploy` directory. The Security.txt
+app will now be available to add to your websites through the Content Manager app.
 
 ### Apply the application to your site
 Edit your site settings by clicking 'edit' on the site node in Content Manager. Select 'Security Headers'
@@ -94,7 +100,4 @@ The Referrer-Policy HTTP header governs which referrer information, sent in the 
 Updated so the CSP from this app overwrites the default CSP from Enonic, which was implemented from Enonic XP 7.9.0 (https://developer.enonic.com/docs/xp/stable/release#xp7_update_9).
 Enonic added CSP to preview, but this app did not add Security Headers to edit or preview mode, so it was changed to add it to preview mode as well so the site won't behave 
 differently from preview to live if you use this app.
-
-
-
 
