@@ -26,7 +26,7 @@ configuration file.
 
 #### Configuration file
 If you check the 'Use configuration from file [...]' radio button, Security Headers will load its
-configuration from a configuration file located in '$XP_HOME/config/no.bouvet.app.security-headers.cfg'
+configuration from a configuration file located in '$XP_HOME/config/no.bouvet.app.securityheaders.cfg'
 instead of using the options specified in the application's site configuration.
 
 The values for each header will be used exactly as specified in the configuration file. Because of this,
