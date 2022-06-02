@@ -58,7 +58,7 @@
                       <option name="base-uri">
                           <label>base-uri</label>
                           <default>true</default>
-                          <help-text>Restricts the URLs which can be used in a document's "base" element. Not setting this allows any URL (no fallback).</help-text>
+                          <help-text>Restricts the URLs which can be used in a document's &lt;base&gt; element. Not setting this allows any URL (no fallback).</help-text>
                           <items>
                               <input name="directiveValues" type="TextArea">
                                   <label>Directive values</label>
@@ -80,7 +80,7 @@
                       <option name="object-src">
                           <label>object-src</label>
                           <default>true</default>
-                          <help-text>Specifies valid sources for the "object", "embed", and "applet" elements. Defaults back to default-src, but it is recommended to restrict this fetch-directive (e.g. explicitly set object-src 'none' if possible) as elements controlled by object-src are perhaps coincidentally considered legacy HTML elements and aren't receiving new standardized features (such as the security attributes sandbox or allow for "iframe"). See more at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/object-src</help-text>
+                          <help-text>Specifies valid sources for the &lt;object&gt;, &lt;embed&gt;, and &lt;applet&gt; elements. Defaults back to default-src, but it is recommended to restrict this fetch-directive (e.g. explicitly set object-src 'none' if possible) as elements controlled by object-src are perhaps coincidentally considered legacy HTML elements and aren't receiving new standardized features (such as the security attributes sandbox or allow for &lt;iframe&gt;). See more at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/object-src</help-text>
                           <items>
                               <input name="directiveValues" type="TextArea">
                                   <label>Directive values</label>
@@ -170,12 +170,15 @@
           <options minimum="1" maximum="1">
               <option name="deny">
                   <label>DENY</label>
+                  <help-text>The page can only be displayed in a frame on the same origin as the page itself.</help-text>
               </option>
               <option name="sameorigin">
                   <label>SAMEORIGIN</label>
+                  <help-text>The page cannot be displayed in a frame, regardless of the site attempting to do so.</help-text>
               </option>
               <option name="allowFrom">
                   <label>ALLOW-FROM</label>
+                  <help-text>Obsolete directive that no longer works in modern browsers. From MDN link (see help-text for X-Frame-Options): "Don't use it."</help-text>
                   <items>
                       <input name="uri" type="TextLine">
                           <label>ALLOW-FROM uri</label>
@@ -191,20 +194,24 @@
           <label>X-XSS-Protection</label>
           <expanded>true</expanded>
           <occurrences minimum="0" maximum="1"/>
-          <help-text>The HTTP X-XSS-Protection response header is a feature of Internet Explorer, Chrome and Safari that stops pages from loading when they detect reflected cross-site scripting (XSS) attacks. Although these protections are largely unnecessary in modern browsers when sites implement a strong Content-Security-Policy that disables the use of inline JavaScript ('unsafe-inline'), they can still provide protections for users of older web browsers that don't yet support CSP. Full description of all the options at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection</help-text>
+          <help-text>If you do not need to support legacy browsers, it is recommended that you use Content-Security-Policy without allowing unsafe-inline scripts instead of using this, as "XSS protection can create XSS vulnerabilities in otherwise safe websites" - see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection.The HTTP X-XSS-Protection response header is a feature of Internet Explorer, Chrome and Safari that stops pages from loading when they detect reflected cross-site scripting (XSS) attacks. Although these protections are largely unnecessary in modern browsers when sites implement a strong Content-Security-Policy that disables the use of inline JavaScript ('unsafe-inline'), they can still provide protections for users of older web browsers that don't yet support CSP.</help-text>
           <options minimum="1" maximum="1">
               <option name="xss_0">
                   <label>Disabled (0)</label>
+                  <help-text>Disables XSS filtering</help-text>
               </option>
               <option name="xss_1">
                   <label>Enabled (1)</label>
+                  <help-text>Enables XSS filtering (usually default in browsers). If a cross-site scripting attack is detected, the browser will sanitize the page (remove the unsafe parts).</help-text>
                   <default>true</default>
               </option>
               <option name="xss_1_block">
                   <label>Enabled, block mode (1; mode=block)</label>
+                  <help-text>Enables XSS filtering. Rather than sanitizing the page, the browser will prevent rendering of the page if an attack is detected.</help-text>
               </option>
               <option name="xss_1_report">
                   <label>Enabled, report mode (1; report=report_url) (Chromium only)</label>
+                  <help-text>Enables XSS filtering. If a cross-site scripting attack is detected, the browser will sanitize the page and report the violation. This uses the functionality of the CSP report-uri directive to send a report.</help-text>
                   <items>
                       <input name="url" type="TextLine">
                           <label>Report URL</label>
