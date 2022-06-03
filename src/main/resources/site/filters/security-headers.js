@@ -1,13 +1,14 @@
 var portalLib = require('/lib/xp/portal');
+var utilLib = require('/lib/project-util');
 
 exports.responseFilter = function (req, res) {
     // Do not apply security headers when in live edit.
-    if (req.mode == 'edit' || req.mode == 'preview') return res;
+    if (req.mode === 'edit') return res;
 
     var headers = res.headers;
     var siteConfig = portalLib.getSiteConfig();
 
-    if (siteConfig && siteConfig.useConfigFile == true) {
+    if (siteConfig && siteConfig.useConfigFile === true) {
         if (app.config.header_strict_transport_security)    headers["Strict-Transport-Security"]    = app.config.header_strict_transport_security;
         if (app.config.header_content_security_policy)      headers["Content-Security-Policy"]      = app.config.header_content_security_policy;
         if (app.config.header_x_frame_options)              headers["X-Frame-Options"]              = app.config.header_x_frame_options;
@@ -24,8 +25,32 @@ exports.responseFilter = function (req, res) {
             headers["Strict-Transport-Security"] = h;
         }
 
-        if (siteConfig.contentSecurityPolicy) {
-            headers["Content-Security-Policy"] = siteConfig.contentSecurityPolicy.policy;
+        if (siteConfig.contentSecurityPolicy
+          && ((siteConfig.contentSecurityPolicy.commonDirectives && siteConfig.contentSecurityPolicy.commonDirectives._selected)
+          || (siteConfig.contentSecurityPolicy.extraDirectives))
+        ) {
+            var h = '';
+            var selectedCommonDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.commonDirectives._selected);
+            if (selectedCommonDirectives.length > 0) {
+                selectedCommonDirectives.forEach(function (selectedCommonDirective) {
+                    if (siteConfig.contentSecurityPolicy.commonDirectives[selectedCommonDirective] && siteConfig.contentSecurityPolicy.commonDirectives[selectedCommonDirective].directiveValues) {
+                        h += `${selectedCommonDirective} ${siteConfig.contentSecurityPolicy.commonDirectives[selectedCommonDirective].directiveValues};`;
+                    }
+                });
+            }
+
+            var extraDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.extraDirectives);
+            if (extraDirectives.length > 0) {
+                extraDirectives.forEach(function (extraDirective) {
+                    if (extraDirective.directiveName && extraDirective.directiveValues){
+                        h += `${extraDirective.directiveName} ${extraDirective.directiveValues};`;
+                    }
+                })
+            }
+
+            if (h.length > 0) {
+                headers["Content-Security-Policy"] = h;
+            }
         }
 
         if (siteConfig.xFrameOptions) {

@@ -5,9 +5,15 @@ Easy to set up and use security headers for Enonic XP.
 The application is available through [Enonic Market](https://market.enonic.com/vendors/bouvet/security-headers).
 
 ### Install application
+#### Enonic Market
 Open the Applications section of your Enonic XP installation. Click 'Install', 
 and locate the 'Security Headers' app in the 'Enonic Market' tab. Now click the 'Install'
 button.
+
+#### Build yourself
+Build this app with gradle. In the terminal, from the root of the project, enter `./gradlew build`. On Windows, just enter `gradlew build`
+in the command line from the project root. Next, move the JAR file from build/libs to your `$XP_HOME/deploy` directory. The Security.txt
+app will now be available to add to your websites through the Content Manager app.
 
 ### Apply the application to your site
 Edit your site settings by clicking 'edit' on the site node in Content Manager. Select 'Security Headers'
@@ -20,7 +26,7 @@ configuration file.
 
 #### Configuration file
 If you check the 'Use configuration from file [...]' radio button, Security Headers will load its
-configuration from a configuration file located in '$XP_HOME/config/no.bouvet.app.security-headers.cfg'
+configuration from a configuration file located in '$XP_HOME/config/no.bouvet.app.securityheaders.cfg'
 instead of using the options specified in the application's site configuration.
 
 The values for each header will be used exactly as specified in the configuration file. Because of this,
@@ -83,10 +89,34 @@ The Referrer-Policy HTTP header governs which referrer information, sent in the 
 ### Links
 [Test your site at securityheaders.io](https://securityheaders.io/)
 
+## Compatibility
+| App version | XP version |
+|-------------|------------|
+| 3.x.x       | 7.9.x      |
+| 2.x.x       | 7.x.x      |
 
+## Changelog
+### 3.0.0
 
+Breaking change: CSP field is updated. See details of how to update from older versions below.
 
+After Enonic added CSP to the preview mode with Enonic XP 7.9.0 (https://developer.enonic.com/docs/xp/stable/release#xp7_update_9),
+we needed to update this app to also add the CSP to preview mode, so the user won't be confused by possible different CSPs. Therefore this app will
+now add Security Headers to any mode except edit mode.
 
+The CSP input in this app has also been updated to make it easier to maintain.
 
-
-
+#### Updating to 3.0.0 from older versions:
+- If you are only using the config file: this update should not affect you. But, we found the documentation gave the wrong filename for the config file, 
+  so you might check that your config is saved in '$XP_HOME/config/no.bouvet.app.securityheaders.cfg' to make sure it is in use.
+- If you are using the "Content-Security-Policy" field, you should: 
+  1. Copy your CSP to a safe place. If you have already updated and did not save your CSP somewhere else,
+    you will still be able to find your old CSP by using for example "Content Viewer", and finding the old config below `data.config.contentSecurityPolicy.policy`.
+    
+     ***NOTE:*** this policy will not be used even if you can still find it in your content. 
+  2. Update the app by opening the Applications section of your Enonic XP installation. Click 'Install', and locate the 'Security Headers' app
+    in the 'Enonic Market' tab. Now click the 'Update' button.
+  3. Navigate to Content Studio and edit the Site Configuration of the "Security Headers" app, and add your CSP by
+    checking the "Common Directives" you want to use and edit their values as you need. If you can't find one of the directives you want to use here, 
+    you can add them by adding one or more "Extra directives".
+- If you are using anything else than what is mentioned above, your settings will not change by this update. The only change will be that the settings are also added to preview mode.
