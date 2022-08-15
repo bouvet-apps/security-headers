@@ -60,6 +60,8 @@ The HTTP Strict-Transport-Security response header (often abbreviated as HSTS)  
 ##### Content-Security-Policy
 Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.
 
+Note: If you do not add `'unsafe-inline'` to `style-src`, styling from Enonic (ex: text-align right of text or images in an HtmlArea) will need to be handled by your app.
+
 [MDN Documentation for CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
 ##### X-Frame-Options
