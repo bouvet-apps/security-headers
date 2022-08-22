@@ -1,0 +1,33 @@
+{
+  "name": "security-headers",
+  "version": "3.1.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bouvet-apps/security-headers.git"
+  },
+  "license": "Apache 2.0",
+  "author": "Bouvet",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/main/resources --out-dir=build/resources/main --ignore \"**/*.js\"",
+    "lint": "eslint --ext=js --ext=es6 ./src/main/resources > ./build/lint-results/lint-result"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.10",
+    "@babel/core": "7.18.2",
+    "@babel/eslint-parser": "7.18.2",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.17.12",
+    "@babel/plugin-proposal-object-rest-spread": "7.18.0",
+    "@babel/plugin-proposal-optional-chaining": "7.17.12",
+    "@babel/plugin-transform-arrow-functions": "7.17.12",
+    "@babel/preset-env": "7.18.2",
+    "eslint": "8.16.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jest": "26.5.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "7.30.0",
+    "react": "18.1.0"
+  }
+}

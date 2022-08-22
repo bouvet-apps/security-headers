@@ -1,18 +1,11 @@
 
-# Created by https://www.gitignore.io/api/osx,java,gradle,java-web,intellij,code-java
-
-### Code-Java ###
-# Language Support for Java(TM) by Red Hat extension for Visual Studio Code - https://marketplace.visualstudio.com/items?itemName=redhat.java
-
-.project
-.classpath
-factoryConfiguration.json
+# Created by https://www.gitignore.io/api/java,node,macos,gradle,java-web,intellij
 
 ### Intellij ###
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-# User-specific stuff:
+# User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -25,14 +18,13 @@ factoryConfiguration.json
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
-.idea/**/dataSources.xml
 .idea/**/dataSources.local.xml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
-# Gradle:
+# Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
 
@@ -44,23 +36,17 @@ factoryConfiguration.json
 # .idea/*.iml
 # .idea/modules
 
-# Visual Studio Code
-.vscode/
-
 # CMake
 cmake-build-*/
 
-# Mongo Explorer plugin:
+# Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
-## File-based project format:
+# File-based project format
 *.iws
-
-## Plugin-specific files:
 
 # IntelliJ
 out/
-.idea
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -70,9 +56,6 @@ atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
 .idea/replstate.xml
-
-# Ruby plugin and RubyMine
-/.rakeTasks
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -225,9 +208,6 @@ typings/
 # Serverless directories
 .serverless
 
-# Make files
-.stamps
-
 ### Gradle ###
 .gradle
 /build/
@@ -245,6 +225,9 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 
-# End of https://www.gitignore.io/api/osx,java,gradle,java-web,intellij,code-java
+# End of https://www.gitignore.io/api/java,node,macos,gradle,java-web,intellij
 
-code/build
+build
+src/main/resources/assets/
+src/main/resources/lib/moment.js
+src/main/resources/lib/momenttimezone.js
