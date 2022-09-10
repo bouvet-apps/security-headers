@@ -1,4 +1,3 @@
-var portalLib = require('/lib/xp/portal');
 var utilLib = require('/lib/project-util');
 
 exports.responseProcessor = function (req, res) {
@@ -6,7 +5,7 @@ exports.responseProcessor = function (req, res) {
     if (req.mode === 'edit') return res;
 
     var headers = res.headers;
-    var siteConfig = portalLib.getSiteConfig();
+    var siteConfig = utilLib.getRootSiteConfig();
 
     if (siteConfig && siteConfig.useConfigFile === true) {
         if (app.config.header_strict_transport_security)    headers["Strict-Transport-Security"]    = app.config.header_strict_transport_security;
