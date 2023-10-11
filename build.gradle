@@ -1,6 +1,6 @@
 plugins {
-    id 'com.enonic.xp.app' version '2.0.0'
-    id 'maven'
+    id 'com.enonic.xp.app' version '3.4.0'
+    id 'maven-publish'
 }
 
 app {
@@ -12,8 +12,8 @@ app {
 }
 
 dependencies {
-    compile "com.enonic.xp:core-api:${xpVersion}"
-    compile "com.enonic.xp:portal-api:${xpVersion}"
+    implementation "com.enonic.xp:core-api:${xpVersion}"
+    implementation "com.enonic.xp:portal-api:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
 }
 
@@ -24,6 +24,6 @@ repositories {
 }
 
 wrapper {
-    gradleVersion = '5.6'
+    gradleVersion = '8.3'
     distributionType = Wrapper.DistributionType.BIN
 }
