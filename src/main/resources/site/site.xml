@@ -255,7 +255,7 @@
       </item-set>
 
     <item-set name="permissionsPolicy">
-        <label>Permissions Policy</label>
+        <label>Permissions-Policy</label>
         <help-text>The HTTP Permissions-Policy header provides a mechanism to allow and deny the use of browser features in a document or within any &lt;iframe&gt; elements in the document. To allow features for &lt;iframe&gt; the feature must be enabled both in the header and by using the 'allow' attribute on the &lt;iframe&gt;. For more information, see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy.</help-text>
         <items>
           <input name="policy" type="TextArea">
