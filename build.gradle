@@ -23,6 +23,18 @@ repositories {
     xp.enonicRepo()
 }
 
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "${group}"
+            artifactId = "${projectName}"
+            version = "${version}"
+
+            from components.java
+        }
+    }
+}
+
 wrapper {
     gradleVersion = '8.3'
     distributionType = Wrapper.DistributionType.BIN
