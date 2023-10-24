@@ -8,9 +8,6 @@ exports.responseProcessor = function (req, res) {
     var headers = res.headers;
     var siteConfig = portalLib.getSiteConfig();
 
-    log.info("responseProcessor %s", JSON.stringify(siteConfig, null, 4));
-
-
     if (siteConfig && siteConfig.useConfigFile === true) {
         if (app.config.header_strict_transport_security)    headers["Strict-Transport-Security"]    = app.config.header_strict_transport_security;
         if (app.config.header_content_security_policy)      headers["Content-Security-Policy"]      = app.config.header_content_security_policy;
