@@ -8,6 +8,9 @@ exports.responseProcessor = function (req, res) {
     var headers = res.headers;
     var siteConfig = portalLib.getSiteConfig();
 
+    log.info("responseProcessor %s", JSON.stringify(siteConfig, null, 4));
+
+
     if (siteConfig && siteConfig.useConfigFile === true) {
         if (app.config.header_strict_transport_security)    headers["Strict-Transport-Security"]    = app.config.header_strict_transport_security;
         if (app.config.header_content_security_policy)      headers["Content-Security-Policy"]      = app.config.header_content_security_policy;
@@ -15,6 +18,7 @@ exports.responseProcessor = function (req, res) {
         if (app.config.header_x_xss_protection)             headers["X-XSS-Protection"]             = app.config.header_x_xss_protection;
         if (app.config.header_x_content_type_options)       headers["X-Content-Type-Options"]       = app.config.header_x_content_type_options;
         if (app.config.header_referrer_policy)              headers["Referrer-Policy"]              = app.config.header_referrer_policy;
+        if (app.config.header_permission_policy)            headers["Permission-Policy"]            = app.config.header_permission_policy;
     } else {
         if (siteConfig.strictTransportSecurity) {
             var h = "max-age=" + siteConfig.strictTransportSecurity.maxAge;
@@ -88,12 +92,16 @@ exports.responseProcessor = function (req, res) {
             headers["X-XSS-Protection"] = h;
         }
 
-        if (siteConfig.xContentTypeOptions) {
+        if (siteConfig.xContentTypeOptions.value) {
             headers["X-Content-Type-Options"] = siteConfig.xContentTypeOptions.value;
         }
 
         if (siteConfig.referrerPolicy) {
             headers["Referrer-Policy"] = siteConfig.referrerPolicy.referrerPolicy;
+        }
+
+        if (siteConfig.permissionsPolicy.policy) {
+            headers["Permissions-Policy"] = siteConfig.permissionsPolicy.policy;
         }
     }
 
