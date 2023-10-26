@@ -89,7 +89,7 @@ exports.responseFilter = function (req, res) {
             headers["X-XSS-Protection"] = h;
         }
 
-        if (siteConfig.xContentTypeOptions.value) {
+        if (siteConfig.xContentTypeOptions && siteConfig.xContentTypeOptions.value) {
             headers["X-Content-Type-Options"] = siteConfig.xContentTypeOptions.value;
         }
 
@@ -97,7 +97,7 @@ exports.responseFilter = function (req, res) {
             headers["Referrer-Policy"] = siteConfig.referrerPolicy.referrerPolicy;
         }
 
-        if (siteConfig.permissionsPolicy.policy) {
+        if (siteConfig.permissionsPolicy && siteConfig.permissionsPolicy.policy) {
             headers["Permissions-Policy"] = siteConfig.permissionsPolicy.policy;
         }
     }
