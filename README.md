@@ -12,7 +12,7 @@ button.
 
 #### Build yourself
 Build this app with gradle. In the terminal, from the root of the project, enter `./gradlew build`. On Windows, just enter `gradlew build`
-in the command line from the project root. Next, move the JAR file from build/libs to your `$XP_HOME/deploy` directory. The Security Headers
+in the command line from the project root. Next, install the JAR file from `build/libs` on the server via the Applications app. The Security Headers
 app will now be available to add to your websites through the Content Manager app.
 
 ### Apply the application to your site
