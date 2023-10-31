@@ -12,7 +12,7 @@ button.
 
 #### Build yourself
 Build this app with gradle. In the terminal, from the root of the project, enter `./gradlew build`. On Windows, just enter `gradlew build`
-in the command line from the project root. Next, move the JAR file from build/libs to your `$XP_HOME/deploy` directory. The Security.txt
+in the command line from the project root. Next, install the JAR file from `build/libs` on the server via the Applications app. The Security Headers
 app will now be available to add to your websites through the Content Manager app.
 
 ### Apply the application to your site
@@ -45,6 +45,7 @@ header_x_frame_options = DENY
 header_x_xss_protection = 1; mode=block
 header_x_content_type_options = nosniff
 header_referrer_policy = no-referrer
+header_permission_policy = geolocation=(self "https://example.com")
 ```
 
 #### Site configuration
@@ -87,6 +88,11 @@ Site security testers usually expect this header to be set.
 The Referrer-Policy HTTP header governs which referrer information, sent in the Referer header, should be included with requests made.
 
 [MDN Documentation for Referrer-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
+
+##### Permissions-Policy
+The HTTP Permissions-Policy header provides a mechanism to allow and deny the use of browser features in a document or within any `<iframe>` elements in the document. To allow features for `<iframe>` the feature must be enabled both in the header and by using the 'allow' attribute on the `<iframe>`.
+
+[MDN Documentation for Permissions-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy)
         
 ### Links
 [Test your site at securityheaders.io](https://securityheaders.io/)
