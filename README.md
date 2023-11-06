@@ -104,6 +104,11 @@ The HTTP Permissions-Policy header provides a mechanism to allow and deny the us
 | 2.x.x       | 7.x.x      |
 
 ## Changelog
+### 3.1.0
+
+Added option for adding for HTTP Permissions-Policy header.
+Added Jitpack publishing
+
 ### 3.0.0
 
 Breaking change: CSP field is updated. See details of how to update from older versions below.
