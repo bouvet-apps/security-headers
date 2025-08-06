@@ -11,9 +11,7 @@ and locate the 'Security Headers' app in the 'Enonic Market' tab. Now click the 
 button.
 
 #### Build yourself
-Build this app with gradle. In the terminal, from the root of the project, enter `./gradlew build`. On Windows, just enter `gradlew build`
-in the command line from the project root. Next, install the JAR file from `build/libs` on the server via the Applications app. The Security Headers
-app will now be available to add to your websites through the Content Manager app.
+See [development documentation](./src/docs/en/development.md).
 
 ### Apply the application to your site
 Edit your site settings by clicking 'edit' on the site node in Content Manager. Select 'Security Headers'
@@ -71,11 +69,16 @@ The X-Frame-Options HTTP response header can be used to indicate whether or not 
 [MDN Documentation for X-Frame-Options](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
 
 ##### X-XSS-Protection
+**Deprecated header**: _Even though this feature can protect users of older web browsers that don't support CSP, in some cases, X-XSS-Protection can create XSS vulnerabilities in otherwise safe websites._
+
 The HTTP X-XSS-Protection response header is a feature of Internet Explorer, Chrome and Safari that stops pages from loading when they detect reflected cross-site scripting (XSS) attacks. Although these protections are largely unnecessary in modern browsers when sites implement a strong Content-Security-Policy that disables the use of inline JavaScript ('unsafe-inline'), they can still provide protections for users of older web browsers that don't yet support CSP.
 
 [MDN Documentation for X-XSS-Protection](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
 
 ##### X-Content-Type-Options
+
+Only valid value is `nosniff`.
+
 The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should not be changed and be followed. This allows to opt-out of MIME type sniffing, or, in other words, it is a way to say that the webmasters knew what they were doing.
 
 This header was introduced by Microsoft in IE 8 as a way for webmasters to block content sniffing that was happening and could transform non-executable MIME types into executable MIME types. Since then, other browsers have introduced it, even if their MIME sniffing algorithms were less aggressive.
