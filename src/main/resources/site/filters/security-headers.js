@@ -1,12 +1,12 @@
-var portalLib = require('/lib/xp/portal');
-var utilLib = require('/lib/project-util');
+const portalLib = require('/lib/xp/portal');
+const utilLib = require('/lib/project-util');
 
 exports.responseFilter = function (req, res) {
     // Do not apply security headers when in live edit.
     if (req.mode === 'edit') return res;
 
-    var headers = res.headers;
-    var siteConfig = portalLib.getSiteConfig();
+    const headers = res.headers;
+    const siteConfig = portalLib.getSiteConfig();
 
     if (siteConfig && siteConfig.useConfigFile === true) {
         if (app.config.header_strict_transport_security)    headers["Strict-Transport-Security"]    = app.config.header_strict_transport_security;
@@ -15,10 +15,10 @@ exports.responseFilter = function (req, res) {
         if (app.config.header_x_xss_protection)             headers["X-XSS-Protection"]             = app.config.header_x_xss_protection;
         if (app.config.header_x_content_type_options)       headers["X-Content-Type-Options"]       = app.config.header_x_content_type_options;
         if (app.config.header_referrer_policy)              headers["Referrer-Policy"]              = app.config.header_referrer_policy;
-        if (app.config.header_permission_policy)            headers["Permission-Policy"]            = app.config.header_permission_policy;
+        if (app.config.header_permission_policy)            headers["Permissions-Policy"]           = app.config.header_permission_policy;
     } else {
         if (siteConfig.strictTransportSecurity) {
-            var h = "max-age=" + siteConfig.strictTransportSecurity.maxAge;
+            let h = "max-age=" + siteConfig.strictTransportSecurity.maxAge;
 
             if (siteConfig.strictTransportSecurity.includeSubdomains) h += '; includeSubDomains';
             if (siteConfig.strictTransportSecurity.preload) h += '; preload';
@@ -30,8 +30,8 @@ exports.responseFilter = function (req, res) {
           && ((siteConfig.contentSecurityPolicy.commonDirectives && siteConfig.contentSecurityPolicy.commonDirectives._selected)
           || (siteConfig.contentSecurityPolicy.extraDirectives))
         ) {
-            var h = '';
-            var selectedCommonDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.commonDirectives._selected);
+            let h = '';
+            const selectedCommonDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.commonDirectives._selected);
             if (selectedCommonDirectives.length > 0) {
                 selectedCommonDirectives.forEach(function (selectedCommonDirective) {
                     if (siteConfig.contentSecurityPolicy.commonDirectives[selectedCommonDirective] && siteConfig.contentSecurityPolicy.commonDirectives[selectedCommonDirective].directiveValues) {
@@ -40,7 +40,7 @@ exports.responseFilter = function (req, res) {
                 });
             }
 
-            var extraDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.extraDirectives);
+            const extraDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.extraDirectives);
             if (extraDirectives.length > 0) {
                 extraDirectives.forEach(function (extraDirective) {
                     if (extraDirective.directiveName && extraDirective.directiveValues){
@@ -55,7 +55,7 @@ exports.responseFilter = function (req, res) {
         }
 
         if (siteConfig.xFrameOptions) {
-            var h;
+            let h;
             switch (siteConfig.xFrameOptions._selected) {
                 case 'deny':
                     h = 'DENY';
@@ -71,7 +71,7 @@ exports.responseFilter = function (req, res) {
         }
 
         if (siteConfig.xXssProtection) {
-            var h;
+            let h;
             switch (siteConfig.xXssProtection._selected) {
                 case 'xss_0':
                     h = '0';
