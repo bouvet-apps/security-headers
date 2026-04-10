@@ -6,16 +6,17 @@ exports.responseFilter = function (req, res) {
     if (req.mode === 'edit') return res;
 
     const headers = res.headers;
-    const siteConfig = portalLib.getSiteConfig();
+    const appConfig = portalLib.getSiteConfig() || {};
+    const siteConfig = appConfig.inheritConfig ? utilLib.getRootSiteConfig() : appConfig;
 
     if (siteConfig && siteConfig.useConfigFile === true) {
-        if (app.config.header_strict_transport_security)    headers["Strict-Transport-Security"]    = app.config.header_strict_transport_security;
-        if (app.config.header_content_security_policy)      headers["Content-Security-Policy"]      = app.config.header_content_security_policy;
-        if (app.config.header_x_frame_options)              headers["X-Frame-Options"]              = app.config.header_x_frame_options;
-        if (app.config.header_x_xss_protection)             headers["X-XSS-Protection"]             = app.config.header_x_xss_protection;
-        if (app.config.header_x_content_type_options)       headers["X-Content-Type-Options"]       = app.config.header_x_content_type_options;
-        if (app.config.header_referrer_policy)              headers["Referrer-Policy"]              = app.config.header_referrer_policy;
-        if (app.config.header_permission_policy)            headers["Permissions-Policy"]           = app.config.header_permission_policy;
+        if (app.config.header_strict_transport_security) headers["Strict-Transport-Security"] = app.config.header_strict_transport_security;
+        if (app.config.header_content_security_policy) headers["Content-Security-Policy"] = app.config.header_content_security_policy;
+        if (app.config.header_x_frame_options) headers["X-Frame-Options"] = app.config.header_x_frame_options;
+        if (app.config.header_x_xss_protection) headers["X-XSS-Protection"] = app.config.header_x_xss_protection;
+        if (app.config.header_x_content_type_options) headers["X-Content-Type-Options"] = app.config.header_x_content_type_options;
+        if (app.config.header_referrer_policy) headers["Referrer-Policy"] = app.config.header_referrer_policy;
+        if (app.config.header_permission_policy) headers["Permissions-Policy"] = app.config.header_permission_policy;
     } else {
         if (siteConfig.strictTransportSecurity) {
             let h = "max-age=" + siteConfig.strictTransportSecurity.maxAge;
@@ -27,8 +28,8 @@ exports.responseFilter = function (req, res) {
         }
 
         if (siteConfig.contentSecurityPolicy
-          && ((siteConfig.contentSecurityPolicy.commonDirectives && siteConfig.contentSecurityPolicy.commonDirectives._selected)
-          || (siteConfig.contentSecurityPolicy.extraDirectives))
+            && ((siteConfig.contentSecurityPolicy.commonDirectives && siteConfig.contentSecurityPolicy.commonDirectives._selected)
+                || (siteConfig.contentSecurityPolicy.extraDirectives))
         ) {
             let h = '';
             const selectedCommonDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.commonDirectives._selected);
@@ -43,7 +44,7 @@ exports.responseFilter = function (req, res) {
             const extraDirectives = utilLib.forceArray(siteConfig.contentSecurityPolicy.extraDirectives);
             if (extraDirectives.length > 0) {
                 extraDirectives.forEach(function (extraDirective) {
-                    if (extraDirective.directiveName && extraDirective.directiveValues){
+                    if (extraDirective.directiveName && extraDirective.directiveValues) {
                         h += `${extraDirective.directiveName} ${extraDirective.directiveValues};`;
                     }
                 })
