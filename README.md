@@ -100,10 +100,14 @@ The HTTP Permissions-Policy header provides a mechanism to allow and deny the us
 ## Compatibility
 | App version | XP version |
 |-------------|------------|
-| 3.x.x       | 7.9.x      |
-| 2.x.x       | 7.x.x      |
+| 3.1.2       | 7.14.4     |
 
 ## Changelog
+### 3.1.2
+- Updated Enonic XP Gradle plugin and Gradle Wrapper
+- Migrated from jcenter to mavenCentral
+- Build and dependencies reviewed and cleaned up
+
 ### 3.1.0
 
 Added option for adding for HTTP Permissions-Policy header.
