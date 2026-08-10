@@ -7,8 +7,6 @@ form:
     occurrences:
       min: 0
       max: 1
-    attributes:
-      alignment: "left"
     alignment: "left"
     default: "unchecked"
   - type: "CheckBox"
