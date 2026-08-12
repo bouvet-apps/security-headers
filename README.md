@@ -100,10 +100,15 @@ The HTTP Permissions-Policy header provides a mechanism to allow and deny the us
 ## Compatibility
 | App version | XP version |
 |-------------|------------|
+| 4.x.x       | 8.x.x      |
 | 3.x.x       | 7.9.x      |
 | 2.x.x       | 7.x.x      |
 
 ## Changelog
+### 4.0.0
+
+Upgraded to XP8
+
 ### 3.1.0
 
 Added option for adding for HTTP Permissions-Policy header.
